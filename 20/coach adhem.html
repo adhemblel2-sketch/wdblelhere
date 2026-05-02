@@ -1,0 +1,2188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>adhem blel Academy | Premium Fitness Coaching</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #7C3AED;
+            --primary-dark: #6D28D9;
+            --primary-light: #A78BFA;
+            --secondary: #EC4899;
+            --accent: #8B5CF6;
+            --black: #0A0A0A;
+            --dark-gray: #1A1A1A;
+            --light-gray: #F5F5F5;
+            --white: #FFFFFF;
+            --gradient: linear-gradient(135deg, #7C3AED 0%, #EC4899 100%);
+            --gradient-hover: linear-gradient(135deg, #6D28D9 0%, #DB2777 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-gray);
+            overflow-x: hidden;
+            background: var(--white);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.05;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: float 15s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(50px);
+                opacity: 0;
+            }
+        }
+
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+
+        .preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader {
+            width: 60px;
+            height: 60px;
+            border: 3px solid var(--primary);
+            border-top: 3px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: all 0.3s;
+            background: transparent;
+        }
+
+        nav.scrolled {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 15px 0;
+            box-shadow: 0 10px 40px rgba(124, 58, 237, 0.2);
+        }
+
+        nav .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 50px;
+        }
+
+        /* Logo Area - YOU CAN ADD YOUR LOGO HERE */
+        nav .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        nav .logo-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+         <img src= alt="Logo" style="width: 50px; height: 50px;">
+
+        nav .logo-text {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        nav a:hover {
+            color: var(--primary-light);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section with Video Background */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            overflow: hidden;
+        }
+
+        /* VIDEO BACKGROUND - REPLACE WITH YOUR VIDEO */
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        /* Use this for your video:
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="your-video.mp4" type="video/mp4">
+        </video>
+        */
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.8) 0%, rgba(236, 72, 153, 0.8) 100%);
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            padding: 0 20px;
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            letter-spacing: 3px;
+            color: var(--white);
+            margin-bottom: 20px;
+            font-weight: 500;
+            text-transform: uppercase;
+            animation: fadeInUp 1s ease-out 0.7s both;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            margin-bottom: 30px;
+            line-height: 1.2;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease-out 0.9s both;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 50px;
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 300;
+            line-height: 1.8;
+            animation: fadeInUp 1s ease-out 1.1s both;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 1.3s both;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 18px 45px;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.4s;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transition: width 0.6s, height 0.6s, top 0.6s, left 0.6s;
+            transform: translate(-50%, -50%);
+        }
+
+        .btn:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: var(--white);
+            box-shadow: 0 10px 40px rgba(124, 58, 237, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(124, 58, 237, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            cursor: pointer;
+        }
+
+        .scroll-indicator i {
+            font-size: 2rem;
+            color: white;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(15px); }
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 50px;
+        }
+
+        /* Sections */
+        section {
+            padding: 120px 20px;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 80px;
+        }
+
+        .section-subtitle {
+            font-size: 1rem;
+            letter-spacing: 3px;
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .section-description {
+            font-size: 1.15rem;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Interactive Stats */
+        .stats-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: scale(1.1);
+        }
+
+        .stat-number {
+            font-size: 4rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* About Section with Image/Video */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* PHOTO/VIDEO AREA - ADD YOUR CONTENT HERE */
+        .media-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(124, 58, 237, 0.3);
+        }
+
+        .about-image {
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        /* For images: <img src="your-photo.jpg" class="about-image" alt="Coach"> */
+        /* For videos: <video class="about-image" controls><source src="your-video.mp4"></video> */
+
+        .about-image:hover {
+            transform: scale(1.05);
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 600px;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            border-radius: 20px;
+        }
+
+        .about-text h3 {
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            color: var(--black);
+        }
+
+        .about-text p {
+            margin-bottom: 25px;
+            color: #555;
+            line-height: 1.9;
+            font-size: 1.05rem;
+        }
+
+        /* Services with Interactive Cards */
+        .services-section {
+            background: var(--light-gray);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 50px 40px;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient);
+            transform: scaleX(0);
+            transition: transform 0.4s;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 60px rgba(124, 58, 237, 0.2);
+        }
+
+        .service-icon {
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+            display: block;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Interactive Program Tabs */
+        .program-section {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+            color: var(--white);
+        }
+
+        .program-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 18px 40px;
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tab-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: var(--gradient);
+            border-radius: 50%;
+            transition: width 0.6s, height 0.6s, top 0.6s, left 0.6s;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+        }
+
+        .tab-btn:hover::before,
+        .tab-btn.active::before {
+            width: 400px;
+            height: 400px;
+        }
+
+        .tab-btn.active,
+        .tab-btn:hover {
+            color: var(--white);
+            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.4);
+        }
+
+        .program-content {
+            display: none;
+            max-width: 1100px;
+            margin: 0 auto;
+            background: rgba(124, 58, 237, 0.1);
+            padding: 60px;
+            border-radius: 20px;
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .program-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .program-content h3 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+        }
+
+        .exercise-table {
+            width: 100%;
+            margin: 30px 0;
+            border-collapse: separate;
+            border-spacing: 0;
+            overflow: hidden;
+            border-radius: 15px;
+        }
+
+        .exercise-table thead {
+            background: var(--gradient);
+        }
+
+        .exercise-table th {
+            padding: 20px;
+            text-align: left;
+            color: var(--white);
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+        }
+
+        .exercise-table td {
+            padding: 20px;
+            border-bottom: 1px solid rgba(124, 58, 237, 0.2);
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .exercise-table tbody tr {
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .exercise-table tbody tr:hover {
+            background: rgba(124, 58, 237, 0.2);
+            transform: scale(1.02);
+        }
+
+        /* Video Gallery Section */
+        .video-gallery {
+            background: var(--light-gray);
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .video-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .video-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(124, 58, 237, 0.3);
+        }
+
+        /* ADD YOUR VIDEOS HERE */
+        .video-thumbnail {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            cursor: pointer;
+        }
+
+        /* Use: <video class="video-thumbnail" controls><source src="video.mp4"></video> */
+        /* Or: <img src="thumbnail.jpg" class="video-thumbnail"> with play button */
+
+        .video-info {
+            padding: 20px;
+            background: white;
+        }
+
+        .video-info h4 {
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        /* Contact Section with Social Media */
+        .contact-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+        }
+
+        .contact-section .section-title {
+            color: var(--white);
+        }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* CONTACT INFO - ADD YOUR DETAILS */
+        .contact-details {
+            list-style: none;
+        }
+
+        .contact-details li {
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .contact-details li:hover {
+            transform: translateX(10px);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+
+        /* SOCIAL MEDIA LINKS - ADD YOUR PROFILES */
+        .social-links {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .social-icon {
+            width: 55px;
+            height: 55px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 1.3rem;
+        }
+
+        .social-icon:hover {
+            background: white;
+            color: var(--primary);
+            transform: translateY(-5px) rotate(360deg);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 50px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 18px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: var(--white);
+            font-size: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.3s;
+            border-radius: 10px;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: white;
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* AI CHATBOT */
+        .chatbot-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 9999;
+        }
+
+        .chatbot-button {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: var(--gradient);
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            box-shadow: 0 10px 40px rgba(124, 58, 237, 0.5);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 10px 40px rgba(124, 58, 237, 0.5);
+            }
+            50% {
+                box-shadow: 0 10px 60px rgba(124, 58, 237, 0.8);
+            }
+        }
+
+        .chatbot-button:hover {
+            transform: scale(1.1);
+        }
+
+        .chatbot-window {
+            position: fixed;
+            bottom: 120px;
+            right: 30px;
+            width: 400px;
+            height: 600px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            animation: slideUp 0.3s ease-out;
+        }
+
+        .chatbot-window.active {
+            display: flex;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .chatbot-header {
+            background: var(--gradient);
+            color: white;
+            padding: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chatbot-header h3 {
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .close-chat {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .close-chat:hover {
+            transform: rotate(90deg);
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            padding: 25px;
+            overflow-y: auto;
+            background: #f8f9fa;
+        }
+
+        .message {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+            animation: fadeInMessage 0.3s ease-out;
+        }
+
+        @keyframes fadeInMessage {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message.bot {
+            flex-direction: row;
+        }
+
+        .message.user {
+            flex-direction: row-reverse;
+        }
+
+        .message-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .message-content {
+            max-width: 70%;
+            padding: 15px 20px;
+            border-radius: 20px;
+            line-height: 1.6;
+        }
+
+        .message.bot .message-content {
+            background: white;
+            color: var(--dark-gray);
+            border-bottom-left-radius: 5px;
+        }
+
+        .message.user .message-content {
+            background: var(--gradient);
+            color: white;
+            border-bottom-right-radius: 5px;
+        }
+
+        .chatbot-input {
+            padding: 20px;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            gap: 10px;
+        }
+
+        .chatbot-input input {
+            flex: 1;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .chatbot-input button {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient);
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+
+        .chatbot-input button:hover {
+            transform: scale(1.1);
+        }
+
+        .typing-indicator {
+            display: none;
+            padding: 15px;
+            background: white;
+            border-radius: 20px;
+            width: fit-content;
+        }
+
+        .typing-indicator.active {
+            display: block;
+        }
+
+        .typing-indicator span {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--primary);
+            margin: 0 2px;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% {
+                transform: translateY(0);
+            }
+            30% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Quick Actions in Chat */
+        .quick-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .quick-action-btn {
+            padding: 8px 16px;
+            background: var(--light-gray);
+            border: 1px solid var(--primary);
+            border-radius: 20px;
+            color: var(--primary);
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+        }
+
+        .quick-action-btn:hover {
+            background: var(--gradient);
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-gray);
+            color: var(--white);
+            padding: 80px 20px 40px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-section h4 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .about-content,
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .chatbot-window {
+                width: 90%;
+                right: 5%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav .container {
+                padding: 0 20px;
+            }
+
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(10, 10, 10, 0.98);
+                flex-direction: column;
+                padding: 20px;
+                gap: 1rem;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .services-grid,
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .chatbot-window {
+                width: 100%;
+                height: 100vh;
+                bottom: 0;
+                right: 0;
+                border-radius: 0;
+            }
+
+            .chatbot-button {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Scroll to Top Button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 999;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg" id="particles"></div>
+
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container">
+            <div class="logo-container">
+                <!-- REPLACE WITH YOUR LOGO -->
+                <div class="logo-image">WD</div>
+                	 <img src="IMG_5131.PNG" alt="Logo" style="width: 50px; height: 50px; border-radius: 50%;"> 
+                <div class="logo-text">ELITE PERFORMANCE</div>
+            </div>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul id="navMenu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#program">Programs</a></li>
+                <li><a href="#videos">Videos</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <!-- ADD YOUR VIDEO BACKGROUND HERE -->
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="../../Pictures/local/sunrise.MOV" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        
+        <div class="hero-content">
+            <div class="hero-subtitle">Premium Fitness Coaching</div>
+            <h1>Transform Your Body & Mind</h1>
+            <p>Experience elite-level training with personalized programming, AI-powered guidance, and unwavering support on your journey to peak performance.</p>
+            <div class="btn-group">
+                <a href="#contact" class="btn btn-primary">Start Your Journey</a>
+                <a href="#program" class="btn btn-secondary">View Programs</a>
+            </div>
+        </div>
+        <div class="scroll-indicator" onclick="document.querySelector('#about').scrollIntoView({behavior: 'smooth'})">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Interactive Stats -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card" data-target="52">
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">Clients Transformed</div>
+                </div>
+                <div class="stat-card" data-target="4">
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat-card" data-target="98">
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">Success Rate</div>
+                </div>
+                <div class="stat-card" data-target="24">
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">24/7 Support</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-subtitle">Chbik marhbe byk</div>
+                <h2 class="section-title">Alyk amen allah </h2>
+                <p class="section-description">Nwaly a9wa bdan lou ken je tokhmem ysamn.</p>
+            </div>
+            <div class="about-content fade-in">
+                <!-- ADD YOUR PHOTO OR VIDEO HERE -->
+                <div class="media-container">
+                    <div class="image-placeholder">
+                        <div style="text-align: center;">
+                            <i class="fas fa-user" style="font-size: 4rem; margin-bottom: 20px;"></i>
+                            <p><img src="bdan.jpg" class="about-image" alt="Coach Photo"></p>
+                            <p style="font-size: 0.9rem; opacity: 0.8;">Replace with: &lt;img src="your-photo.jpg" class="about-image"&gt;</p>
+                        </div>
+                    </div>
+                    
+                    <!-- OR VIDEO: <video class="about-image" controls><source src="intro-video.mp4"></video> -->
+                </div>
+                <div class="about-text">
+                    <h3>Master sahriet & Noum Specialist</h3>
+                    <p>keber fy byt sala mandych biti netflix mawdou martin 12 5braa seriet aflem nhb ncho9 fatry ma omar laya w 3isam l3absi ceo of chesse company self made.</p>
+                    
+                    <p>hasylou dear client mnraw mn bathna ken lkhir vive tunisi womar laya.</p>
+                    
+                    <div style="margin: 30px 0;">
+                        <h4 style="margin-bottom: 15px; color: var(--primary);">Elite Certifications</h4>
+                        <ul style="list-style: none;">
+                            <li style="padding: 10px 0; border-bottom: 1px solid #eee;">
+                                <i class="fas fa-check-circle" style="color: var(--primary); margin-right: 10px;"></i>
+                                5 snin mrama ra5 le
+                            </li>
+                            <li style="padding: 10px 0; border-bottom: 1px solid #eee;">
+                                <i class="fas fa-check-circle" style="color: var(--primary); margin-right: 10px;"></i>
+                                specialite mar9et 5othraa
+                            </li>
+                            <li style="padding: 10px 0; border-bottom: 1px solid #eee;">
+                                <i class="fas fa-check-circle" style="color: var(--primary); margin-right: 10px;"></i>
+                                champion de padel 7 marat
+                            </li>
+                            <li style="padding: 10px 0;">
+                                <i class="fas fa-check-circle" style="color: var(--primary); margin-right: 10px;"></i>
+                                hybrid athlet wntkayf chicha
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-subtitle">Premium Services</div>
+                <h2 class="section-title">Tailored Excellence</h2>
+                <p class="section-description">Choose from our exclusive coaching packages designed for high-performing individuals.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon"><i class="fas fa-crown"></i></div>
+                    <h3>Elite 1-on-1 Coaching</h3>
+                    <p>Private training sessions with personalized programming, form analysis, and real-time adjustments. Includes weekly body composition tracking and performance assessments.</p>
+                    <div style="margin: 25px 0; padding: 20px; background: var(--light-gray); border-radius: 10px;">
+                        <h4 style="color: var(--primary); font-size: 2rem; margin-bottom: 5px;">$500</h4>
+                        <p style="color: #666; font-size: 0.9rem;">per month</p>
+                    </div>
+                    <a href="#contact" class="btn btn-primary" style="width: 100%;">Ozdom baba</a>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon"><i class="fas fa-gem"></i></div>
+                    <h3>Platinum Online Coaching</h3>
+                    <p>Fully customized remote training with weekly video check-ins, custom meal planning, supplement protocols, and unlimited messaging support via our AI assistant.</p>
+                    <div style="margin: 25px 0; padding: 20px; background: var(--light-gray); border-radius: 10px;">
+                        <h4 style="color: var(--primary); font-size: 2rem; margin-bottom: 5px;">$350</h4>
+                        <p style="color: #666; font-size: 0.9rem;">per month</p>
+                    </div>
+                    <a href="#contact" class="btn btn-primary" style="width: 100%;">Ozdom baba</a>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon"><i class="fas fa-trophy"></i></div>
+                    <h3>Executive Transformation</h3>
+                    <p>Comprehensive 12-week program including training, nutrition, recovery protocols, stress management, and lifestyle optimization for busy professionals.</p>
+                    <div style="margin: 25px 0; padding: 20px; background: var(--light-gray); border-radius: 10px;">
+                        <h4 style="color: var(--primary); font-size: 2rem; margin-bottom: 5px;">$3,500</h4>
+                        <p style="color: #666; font-size: 0.9rem;">12 weeks</p>
+                    </div>
+                    <a href="#contact" class="btn btn-primary" style="width: 100%;">Ozdom baba</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Program Section -->
+    <section id="program" class="program-section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-subtitle">Training Programs</div>
+                <h2 class="section-title">Elite Push/Pull/Legs Protocol</h2>
+                <p class="section-description" style="color: rgba(255,255,255,0.8);">A scientifically-designed 6-day training split optimized for maximum hypertrophy and strength development.</p>
+            </div>
+            
+            <div class="program-tabs fade-in">
+                <button class="tab-btn active" onclick="showProgram('push')">
+                    <i class="fas fa-dumbbell"></i> PUSH DAY
+                </button>
+                <button class="tab-btn" onclick="showProgram('pull')">
+                    <i class="fas fa-hand-rock"></i> PULL DAY
+                </button>
+                <button class="tab-btn" onclick="showProgram('legs')">
+                    <i class="fas fa-running"></i> LEG DAY
+                </button>
+            </div>
+
+            <!-- Push Day -->
+            <div id="push" class="program-content active">
+                <h3><i class="fas fa-fire"></i> PUSH DAY - Chest, Shoulders & Triceps</h3>
+                <table class="exercise-table">
+                    <thead>
+                        <tr>
+                            <th>Exercise</th>
+                            <th>Sets</th>
+                            <th>Reps</th>
+                            <th>Tempo</th>
+                            <th>Rest</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><i class="fas fa-star" style="color: var(--primary);"></i> Barbell Bench Press</td>
+                            <td>4</td>
+                            <td>6-8</td>
+                            <td>3-0-1-0</td>
+                            <td>3 min</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-star" style="color: var(--primary);"></i> Incline Dumbbell Press</td>
+                            <td>4</td>
+                            <td>8-10</td>
+                            <td>2-0-1-0</td>
+                            <td>2.5 min</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-star" style="color: var(--primary);"></i> Standing Barbell OHP</td>
+                            <td>4</td>
+                            <td>8-10</td>
+                            <td>2-0-1-0</td>
+                            <td>2.5 min</td>
+                        </tr>
+                        <tr>
+                            <td>Cable Lateral Raises</td>
+                            <td>3</td>
+                            <td>12-15</td>
+                            <td>2-1-1-0</td>
+                            <td>90 sec</td>
+                        </tr>
+                        <tr>
+                            <td>Pec Deck / Cable Flyes</td>
+                            <td>3</td>
+                            <td>12-15</td>
+                            <td>2-1-2-0</td>
+                            <td>90 sec</td>
+                        </tr>
+                        <tr>
+                            <td>Tricep Rope Pushdowns</td>
+                            <td>3</td>
+                            <td>12-15</td>
+                            <td>2-0-1-1</td>
+                            <td>75 sec</td>
+                        </tr>
+                        <tr>
+                            <td>Overhead Cable Extension</td>
+                            <td>3</td>
+                            <td>12-15</td>
+                            <td>2-0-1-1</td>
+                            <td>75 sec</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pull Day -->
+            <div id="pull" class="program-content">
+                <h3><i class="fas fa-bolt"></i> PULL DAY - Back & Biceps</h3>
+                <table class="exercise-table">
+                    <thead>
+                        <tr>
+                            <th>Exercise</th>
+                            <th>Sets</th>
+                            <th>Reps</th>
+                            <th>Tempo</th>
+                            <th>Rest</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><i class="fas fa-star" style="color: var(--primary);"></i> Conventional Deadlifts</td>
+                            <td>4</td>
+                            <td>5-6</td>
+                            <td>3-0-1-0</td>
+                            <td>3-4 min</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-star" style="color: var(--primary);"></i> Weighted Pull-ups</td>
+                            <td>4</td>
+                            <td>6-8</td>
+                            <td>2-0-1-1</td>
+                            <td>3 min</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-star" style="color: var(--primary);"></i> Pendlay Rows</td>
+                            <td>4</td>
+                            <td>8-10</td>
+                            <td>1-0-1-0</td>
+                            <td>2.5 min</td>
+                        </tr>
+                        <tr>
+                            <td>Chest Supported Row</td>
+                            <td>3</td>
+                            <td>10-12</td>
+                            <td>2-0-1-1</td>
+                            <td>2 min</td>
+                        </tr>
+                        <tr>
+                            <td>Face Pulls</td>
+                            <td>4</td>
+                            <td>15-20</td>
+                            <td>2-1-1-1</td>
+                            <td>90 sec</td>
+                        </tr>
+                        <tr>
+                            <td>EZ Bar Curl</td>
+                            <td>3</td>
+                            <td>10-12</td>
+                            <td>2-0-1-0</td>
+                            <td>90 sec</td>
+                        </tr>
+                        <tr>
+                            <td>Hammer Curls</td>
+                            <td>3</td>
+                            <td>12-15</td>
+                            <td>2-0-1-0</td>
+                            <td>75 sec</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Legs Day -->
+            <div id="legs" class="program-content">
+                <h3><i class="fas fa-fire-alt"></i> LEG DAY - Quads, Hamstrings & Glutes</h3>
+                <table class="exercise-table">
+                    <thead>
+                        <tr>
+                            <th>Exercise</th>
+                            <th>Sets</th>
+                            <th>Reps</th>
+                            <th>Tempo</th>
+                            <th>Rest</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><i class="fas fa-star" style="color: var(--primary);"></i> Barbell Back Squats</td>
+                            <td>4</td>
+                            <td>6-8</td>
+                            <td>3-0-1-0</td>
+                            <td>3-4 min</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-star" style="color: var(--primary);"></i> Romanian Deadlifts</td>
+                            <td>4</td>
+                            <td>8-10</td>
+                            <td>3-1-1-0</td>
+                            <td>2.5 min</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-star" style="color: var(--primary);"></i> Leg Press</td>
+                            <td>3</td>
+                            <td>10-12</td>
+                            <td>2-0-1-0</td>
+                            <td>2 min</td>
+                        </tr>
+                        <tr>
+                            <td>Bulgarian Split Squats</td>
+                            <td>3</td>
+                            <td>10-12/leg</td>
+                            <td>2-0-1-0</td>
+                            <td>90 sec</td>
+                        </tr>
+                        <tr>
+                            <td>Lying Leg Curl</td>
+                            <td>3</td>
+                            <td>12-15</td>
+                            <td>2-1-1-0</td>
+                            <td>90 sec</td>
+                        </tr>
+                        <tr>
+                            <td>Leg Extensions</td>
+                            <td>3</td>
+                            <td>12-15</td>
+                            <td>2-0-1-1</td>
+                            <td>90 sec</td>
+                        </tr>
+                        <tr>
+                            <td>Standing Calf Raises</td>
+                            <td>4</td>
+                            <td>15-20</td>
+                            <td>2-2-1-0</td>
+                            <td>60 sec</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Gallery Section -->
+    <section id="videos" class="video-gallery">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-subtitle">Video Library</div>
+                <h2 class="section-title">Training & Tips</h2>
+                <p class="section-description">Watch technique tutorials, transformation stories, and expert advice.</p>
+            </div>
+            <div class="video-grid">
+                <!-- ADD YOUR VIDEOS HERE -->
+                <div class="video-card fade-in">
+                    <div style="width: 100%; height: 250px; background: var(--gradient); display: flex; align-items: center; justify-content: center; color: white; flex-direction: column; gap: 10px;">
+                        <i class="fas fa-video" style="font-size: 3rem;"></i>
+                        <p>  <video class="video-thumbnail" controls>
+                        <source src="0619.mp4" type="video/mp4">
+                    </video></p>
+                    </div>
+                  
+                    <div class="video-info">
+                        <h4>Perfect Squat Form Tutorial</h4>
+                        <p>Learn the fundamentals of proper squat technique</p>
+                    </div>
+                </div>
+                
+                <div class="video-card fade-in">
+                    <div style="width: 100%; height: 250px; background: var(--gradient); display: flex; align-items: center; justify-content: center; color: white; flex-direction: column; gap: 10px;">
+                        <i class="fas fa-video" style="font-size: 3rem;"></i>
+                        <p>  <video class="video-thumbnail" controls>
+                        <source src="0620 (4).mp4" type="video/mp4">
+                    </video> --></p>
+                    </div>
+                    <div class="video-info">
+                        <h4>Client Transformation Story</h4>
+                        <p>From 220lbs to 180lbs in 12 weeks</p>
+                    </div>
+                </div>
+                
+                <div class="video-card fade-in">
+                    <div style="width: 100%; height: 250px; background: var(--gradient); display: flex; align-items: center; justify-content: center; color: white; flex-direction: column; gap: 10px;">
+                        <i class="fas fa-video" style="font-size: 3rem;"></i>
+                        <p>  <video class="video-thumbnail" controls>
+                        <source src="arbouch.mp4" type="video/mp4">
+                    </video> --></p>
+                    </div>
+                    <div class="video-info">
+                        <h4>Nutrition Basics for Muscle Growth</h4>
+                        <p>Everything you need to know about diet</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-subtitle">Get Started</div>
+                <h2 class="section-title">Begin Your Transformation</h2>
+                <p class="section-description" style="color: rgba(255,255,255,0.9);">Take the first step toward becoming the best version of yourself.</p>
+            </div>
+            <div class="contact-wrapper">
+                <div class="contact-info fade-in">
+                    <h3>Let's Connect</h3>
+                    <p style="color: rgba(255,255,255,0.9); margin-bottom: 40px;">Ready to invest in yourself? Schedule a complimentary consultation to discuss your goals.</p>
+                    
+                    <!-- ADD YOUR CONTACT INFORMATION -->
+                    <ul class="contact-details">
+                        <li>
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <strong>Email</strong><br>
+                                <a href="adhemblel2@gmail.com" style="color: rgba(255,255,255,0.8);">adhemblel2@gmail.com</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <strong>Phone</strong><br>
+                                <a href="tel:+216 52821175" style="color: rgba(255,255,255,0.8);">tel:+216 52821175</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <strong>Location</strong><br>
+                                <span style="color: rgba(255,255,255,0.8);">zwawin city</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <strong>Hours</strong><br>
+                                <span style="color: rgba(255,255,255,0.8);">Mon-Fri: 6AM - 8PM</span>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <!-- ADD YOUR SOCIAL MEDIA LINKS -->
+                    <div style="margin-top: 40px;">
+                        <h4 style="margin-bottom: 20px;">Follow Me</h4>
+                        <div class="social-links">
+                            <a href="https://www.instagram.com/adhem_blel/" class="social-icon" target="_blank" title="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://www.facebook.com/adhem.blel.3" class="social-icon" target="_blank" title="Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="https://www.youtube.com/@adhemblel2" class="social-icon" target="_blank" title="YouTube">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="https://twitter.com/yourhandle" class="social-icon" target="_blank" title="Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="https://www.tiktok.com/@adhem_blel?_r=1&_t=ZS-95wflMGvMjB" class="social-icon" target="_blank" title="TikTok">
+                                <i class="fab fa-tiktok"></i>
+                            </a>
+                            <a href="https://linkedin.com/in/yourprofile" class="social-icon" target="_blank" title="LinkedIn">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <form class="contact-form fade-in" onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" required placeholder="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" required placeholder="john@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" required placeholder="+1 (555) 123-4567">
+                    </div>
+                    <div class="form-group">
+                        <label for="service">Service Interest *</label>
+                        <select id="service" required>
+                            <option value="">Select a service...</option>
+                            <option value="elite">Elite 1-on-1 Coaching</option>
+                            <option value="platinum">Platinum Online Coaching</option>
+                            <option value="executive">Executive Transformation</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="goals">Your Goals & Timeline *</label>
+                        <textarea id="goals" required placeholder="Tell me about your fitness goals..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                        <i class="fas fa-paper-plane"></i> Submit Application
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Elite Performance</h4>
+                    <p style="color: rgba(255,255,255,0.7); line-height: 1.8;">Premium fitness coaching for individuals who demand excellence. Transform your body, elevate your performance.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="#about" style="color: rgba(255,255,255,0.7); text-decoration: none; display: block; margin: 10px 0;">About</a>
+                    <a href="#services" style="color: rgba(255,255,255,0.7); text-decoration: none; display: block; margin: 10px 0;">Services</a>
+                    <a href="#program" style="color: rgba(255,255,255,0.7); text-decoration: none; display: block; margin: 10px 0;">Programs</a>
+                    <a href="#contact" style="color: rgba(255,255,255,0.7); text-decoration: none; display: block; margin: 10px 0;">Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <p style="color: rgba(255,255,255,0.7); margin: 10px 0;">Personal Training</p>
+                    <p style="color: rgba(255,255,255,0.7); margin: 10px 0;">Online Coaching</p>
+                    <p style="color: rgba(255,255,255,0.7); margin: 10px 0;">Nutrition Planning</p>
+                    <p style="color: rgba(255,255,255,0.7); margin: 10px 0;">Executive Wellness</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Newsletter</h4>
+                    <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px;">Get fitness tips & updates</p>
+                    <input type="email" placeholder="Your email" style="width: 100%; padding: 12px; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); color: white; border-radius: 5px; margin-bottom: 10px;">
+                    <button class="btn btn-primary" style="width: 100%;">Subscribe</button>
+                </div>
+            </div>
+            <div style="text-align: center; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.5);">
+                <p>&copy; 2024 Elite Performance Academy. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Chatbot - WELDBLEL -->
+    <div class="chatbot-container">
+        <button class="chatbot-button" onclick="toggleChat()">
+            <i class="fas fa-comments"></i>
+        </button>
+        
+        <div class="chatbot-window" id="chatWindow">
+            <div class="chatbot-header">
+                <h3>
+                    <i class="fas fa-robot"></i> Weldblel AI Assistant
+                </h3>
+                <button class="close-chat" onclick="toggleChat()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="chatbot-messages" id="chatMessages">
+                <div class="message bot">
+                    <div class="message-avatar">W</div>
+                    <div class="message-content">
+                        👋 ahla! ena Weldblel, your AI fitness assistant. mawjoud 24/7 to answer your questions about training, nutrition, and our coaching programs. kifech najm n3awnek?
+                        <div class="quick-actions">
+                            <button class="quick-action-btn" onclick="sendQuickMessage('Tell me about your programs')">Programs</button>
+                            <button class="quick-action-btn" onclick="sendQuickMessage('What are your prices?')">laswem</button>
+                            <button class="quick-action-btn" onclick="sendQuickMessage('How do I start?')">Get Started</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="typing-indicator" id="typingIndicator">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            
+            <div class="chatbot-input">
+                <input type="text" id="chatInput" placeholder="Type your message..." onkeypress="if(event.key==='Enter') sendMessage()">
+                <button onclick="sendMessage()">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Preloader
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.querySelector('.preloader').classList.add('hidden');
+            }, 1500);
+        });
+
+        // Animated Background Particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+        createParticles();
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            const scrollTop = document.getElementById('scrollTop');
+            
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+                scrollTop.classList.add('visible');
+            } else {
+                navbar.classList.remove('scrolled');
+                scrollTop.classList.remove('visible');
+            }
+        });
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            document.getElementById('navMenu').classList.toggle('active');
+        }
+
+        // Program tabs
+        function showProgram(day) {
+            document.querySelectorAll('.program-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            document.getElementById(day).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Animated counter for stats
+        function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 100;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target + (target === 98 ? '%' : target === 24 ? '/7' : '+');
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 20);
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(40px)';
+            el.style.transition = 'opacity 0.8s, transform 0.8s';
+            observer.observe(el);
+        });
+
+        // Stats counter trigger
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    document.querySelectorAll('.stat-card').forEach(card => {
+                        const target = parseInt(card.dataset.target);
+                        const numberElement = card.querySelector('.stat-number');
+                        animateCounter(numberElement, target);
+                    });
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const statsSection = document.querySelector('.stats-section');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+
+        // Chatbot functionality
+        let chatOpen = false;
+
+        function toggleChat() {
+            chatOpen = !chatOpen;
+            const chatWindow = document.getElementById('chatWindow');
+            chatWindow.classList.toggle('active');
+            
+            if (chatOpen) {
+                document.getElementById('chatInput').focus();
+            }
+        }
+
+        // AI Chatbot responses
+        const responses = {
+            'programs': "We offer three premium programs:\n\n🏆 Elite 1-on-1 Coaching ($500/month)\n💎 Platinum Online Coaching ($350/month)\n👑 Executive Transformation ($3,500/12 weeks)\n\nWhich one interests you?",
+            'price': "Our pricing is:\n\n• Elite 1-on-1: $500/month\n• Platinum Online: $350/month\n• Executive Program: $3,500/12 weeks\n\nAll programs include personalized training, nutrition guidance, and 24/7 support!",
+            'start': "Getting started is easy!\n\n1️⃣ Fill out the contact form\n2️⃣ Schedule your free consultation\n3️⃣ Get your custom program\n4️⃣ Start transforming!\n\nReady to begin? Click the 'Start Your Journey' button!",
+            'nutrition': "Our nutrition approach includes:\n\n🥗 Personalized meal plans\n📊 Macro tracking guidance\n💊 Supplement recommendations\n📱 Weekly check-ins\n\nNutrition is 70% of your results!",
+            'workout': "The Push/Pull/Legs program is a 6-day split:\n\n💪 Push: Chest, Shoulders, Triceps\n🤜 Pull: Back, Biceps\n🦵 Legs: Quads, Hamstrings, Calves\n\nEach muscle trained 2x per week for optimal growth!",
+            'default': "Great question! I can help you with:\n\n• Program information\n• Pricing details\n• Getting started\n• Nutrition advice\n• Workout plans\n\nWhat would you like to know more about?"
+        };
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            
+            if (message === '') return;
+            
+            // Add user message
+            addMessage(message, 'user');
+            input.value = '';
+            
+            // Show typing indicator
+            const typingIndicator = document.getElementById('typingIndicator');
+            typingIndicator.classList.add('active');
+            
+            // Simulate AI thinking
+            setTimeout(() => {
+                typingIndicator.classList.remove('active');
+                const response = getAIResponse(message);
+                addMessage(response, 'bot');
+            }, 1000 + Math.random() * 1000);
+        }
+
+        function sendQuickMessage(message) {
+            document.getElementById('chatInput').value = message;
+            sendMessage();
+        }
+
+        function addMessage(text, type) {
+            const messagesContainer = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}`;
+            
+            const avatar = document.createElement('div');
+            avatar.className = 'message-avatar';
+            avatar.textContent = type === 'bot' ? 'W' : 'You'[0];
+            
+            const content = document.createElement('div');
+            content.className = 'message-content';
+            content.textContent = text;
+            
+            messageDiv.appendChild(avatar);
+            messageDiv.appendChild(content);
+            
+            // Insert before typing indicator
+            const typingIndicator = document.getElementById('typingIndicator');
+            messagesContainer.insertBefore(messageDiv, typingIndicator);
+            
+            // Scroll to bottom
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function getAIResponse(message) {
+            const lowercaseMessage = message.toLowerCase();
+            
+            if (lowercaseMessage.includes('program') || lowercaseMessage.includes('service')) {
+                return responses.programs;
+            } else if (lowercaseMessage.includes('price') || lowercaseMessage.includes('cost') || lowercaseMessage.includes('how much')) {
+                return responses.price;
+            } else if (lowercaseMessage.includes('start') || lowercaseMessage.includes('begin') || lowercaseMessage.includes('join')) {
+                return responses.start;
+            } else if (lowercaseMessage.includes('nutrition') || lowercaseMessage.includes('diet') || lowercaseMessage.includes('meal')) {
+                return responses.nutrition;
+            } else if (lowercaseMessage.includes('workout') || lowercaseMessage.includes('exercise') || lowercaseMessage.includes('training')) {
+                return responses.workout;
+            } else if (lowercaseMessage.includes('hi') || lowercaseMessage.includes('hello') || lowercaseMessage.includes('hey')) {
+                return "Hello! 👋 I'm Weldblel, your AI fitness companion. I'm here to answer all your questions about our programs, pricing, and how to get started. What would you like to know?";
+            } else if (lowercaseMessage.includes('thank')) {
+                return "You're very welcome! 😊 Is there anything else I can help you with today?";
+            } else {
+                return responses.default;
+            }
+        }
+
+        // Form submission
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            // Get form data
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            
+            // Show success message
+            alert(`Thank you, ${name}! 🎉\n\nI've received your application and will contact you at ${email} within 24 hours to schedule your complimentary consultation.\n\nGet ready to transform! 💪`);
+            
+            event.target.reset();
+        }
+
+        // Smooth scrolling for all links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    document.getElementById('navMenu').classList.remove('active');
+                }
+            });
+        });
+
+        // Add hover effects to service cards
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px) scale(1.02)';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Interactive table rows
+        document.querySelectorAll('.exercise-table tbody tr').forEach(row => {
+            row.addEventListener('click', function() {
+                const exercise = this.cells[0].textContent;
+                alert(`💡 Pro Tip for ${exercise}:\n\nFocus on mind-muscle connection and controlled tempo for maximum gains!`);
+            });
+        });
+
+        console.log('%c🏋️ Elite Performance Academy', 'font-size: 20px; color: #7C3AED; font-weight: bold;');
+        console.log('%c💪 Ready to transform your body?', 'font-size: 14px; color: #EC4899;');
+		
+</script>
+		
+    </script>
+</body>
+</html>
